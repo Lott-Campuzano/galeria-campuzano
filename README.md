@@ -23,7 +23,7 @@ JavaScript, SVG y un archivo JSON de datos.
 - **Color dinámico**: cada obra aporta su color dominante al ambiente, al
   acento y al fondo del visor, con respaldo determinista si el CDN bloquea
   la lectura por canvas.
-- **Diseño**: blanco hueso y carbón, Times New Roman para titulares, IBM
+- **Diseño**: blanco hueso y gris profundo, Times New Roman para titulares, IBM
   Plex Sans para lectura, JetBrains Mono para datos, cristal acrílico,
   bordes rectos y grano fotográfico.
 
@@ -142,7 +142,6 @@ Casi todo el contenido editorial vive en `assets/js/config.js`:
 - `site.intro`, `site.statement`, `site.quote`, `site.availability`
 - `site.social` (Instagram, LinkedIn, GitHub, Dribbble, Behance, sitio)
 - `site.facts` y `site.practice`
-- `site.credit` (el crédito del pie no debe cambiarse)
 - `gallery.homeCount` (mínimo recomendado: 30)
 - `drive.apiKey`
 
@@ -163,7 +162,8 @@ mostrando contenido legible.
 
 La identidad toma el lenguaje visual de los proyectos de Lott Campuzano:
 
-- Negro `#0D0D0D`, blanco `#F2F2F2`, coral `#F25E3D` y salmón `#F2AB9B`.
+- Blanco hueso `#FAF8F3` y gris profundo `#1E1E21` en bandas y pie.
+- Tinta casi negra `#0D0D0D`, coral `#F25E3D` y salmón `#F2AB9B`.
 - Titulares enormes en Times New Roman, con la palabra en cursiva en coral.
 - Datos técnicos en monoespaciada.
 - Retícula visible, marcos gruesos y cero esquinas redondeadas.
@@ -171,8 +171,6 @@ La identidad toma el lenguaje visual de los proyectos de Lott Campuzano:
 - Grano sutil y halos de color tomados de cada obra.
 
 ## Créditos
-
-Hecho con amor por Lott Campuzano y OpenCode.
 
 Iconos: [Iconify](https://iconify.design/) con el set Phosphor.
 Tipografías: IBM Plex Sans y JetBrains Mono desde Google Fonts.

@@ -27,7 +27,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel — Galería Campuzano</title>
   <meta name="description" content="Panel local para importar, editar y publicar la obra de la Galería Campuzano.">
-  <meta name="theme-color" content="#0d0d0d">
+  <meta name="theme-color" content="#1e1e21">
   <meta name="color-scheme" content="light">
   <meta name="robots" content="noindex, nofollow">
 
@@ -48,7 +48,6 @@
   <!-- CABECERA PÚBLICA: permite volver al sitio en cualquier momento. -->
   <header class="site-header" data-header>
     <a class="brand" href="index.html">
-      <span class="brand__mark" aria-hidden="true">GC</span>
       <span class="brand__name">Galería <em>Campuzano</em></span>
     </a>
 
@@ -73,21 +72,16 @@
 
   <main class="admin" id="admin-main">
     <!-- ========================================================
-         ENCABEZADO Y ESTADÍSTICAS
+         ENCABEZADO Y CONTADORES
+         Solo datos: el panel no necesita explicaciones largas.
          ======================================================== -->
     <section class="admin-hero" aria-labelledby="admin-title">
       <div class="admin-hero__meta mono">
-        <span>Panel de edición · uso local</span>
+        <span>Panel de edición</span>
         <span id="admin-updated">Borrador sin guardar</span>
       </div>
 
       <h1 class="admin-hero__title" id="admin-title">Panel<em>.</em></h1>
-
-      <p class="admin-hero__lead">
-        Importa carpetas públicas de Google Drive, ordena la obra y
-        descarga el archivo que alimenta la galería. Todo ocurre en tu
-        navegador: no hay servidor ni base de datos.
-      </p>
 
       <div class="admin-stats">
         <div class="admin-stat">
@@ -99,13 +93,11 @@
         <div class="admin-stat">
           <span class="mono">Publicadas</span>
           <strong id="stat-published">0</strong>
-          <span class="mono">visibles en el sitio</span>
         </div>
 
         <div class="admin-stat">
           <span class="mono">Fuentes</span>
           <strong id="stat-sources">0</strong>
-          <span class="mono">carpetas y enlaces</span>
         </div>
 
         <div class="admin-stat admin-stat--wide">
@@ -118,65 +110,40 @@
       </div>
     </section>
 
-    <div class="admin-layout">
-      <!-- Índice lateral del panel -->
-      <aside class="admin-nav acrylic" aria-label="Secciones del panel">
-        <span class="admin-nav__label">Secciones</span>
-        <a href="#fuentes"><iconify-icon icon="ph:folder-open"></iconify-icon> Fuentes</a>
-        <a href="#obras"><iconify-icon icon="ph:images"></iconify-icon> Obra</a>
-        <a href="#publicar"><iconify-icon icon="ph:upload-simple"></iconify-icon> Publicar</a>
-        <a href="#ayuda"><iconify-icon icon="ph:question"></iconify-icon> Ayuda</a>
-      </aside>
-
+    <div class="admin-layout admin-layout--single">
       <div class="admin-main">
         <!-- ======================================================
-             1. FUENTES
+             1. CARPETAS
+             El único campo que se rellena a mano.
              ====================================================== -->
         <section class="panel" id="fuentes" aria-labelledby="sources-title">
           <div class="panel__head">
-            <div>
-              <p class="mono">01 · Entrada</p>
-              <h2 class="panel__title" id="sources-title">Fuentes de <em>imagen</em></h2>
-            </div>
+            <h2 class="panel__title" id="sources-title">Carpetas<em>.</em></h2>
             <span class="badge" id="source-count">0 fuentes</span>
           </div>
 
           <div class="panel__body">
-            <!-- Guía que solo aparece si falta la API key. -->
             <div class="admin-note" id="drive-guide" hidden>
-              <strong>Falta la API key de Google Drive.</strong>
-              El panel puede editar la demo, pero no leer carpetas nuevas.
-              Abre <code>assets/js/config.js</code>, pega tu key en
-              <code>drive.apiKey</code> y recarga esta página.
-              <ol>
-                <li>Entra a <code>console.cloud.google.com</code> y crea un proyecto.</li>
-                <li>Activa <strong>Google Drive API</strong> en «APIs y servicios».</li>
-                <li>Crea una <strong>API key</strong> y restríngela a Google Drive API.</li>
-                <li>Añade la restricción por dominio cuando publiques el panel.</li>
-              </ol>
+              <strong>Falta la API key.</strong> Pégala en
+              <code>drive.apiKey</code> dentro de
+              <code>assets/js/config.js</code>.
             </div>
 
-            <p>
-              Pega uno o varios enlaces. Se leen únicamente las carpetas
-              públicas que aparezcan en este campo: el panel no recorre tu
-              Drive ni pide acceso a tu cuenta.
-            </p>
-
             <label class="field">
-              <span>Enlaces de carpetas públicas, archivos o imágenes</span>
+              <span>Carpetas públicas de Drive o enlaces a imágenes</span>
               <textarea
                 class="textarea"
                 id="source-input"
-                rows="5"
+                rows="4"
                 spellcheck="false"
-                placeholder="https://drive.google.com/drive/folders/XXXXXXXXXXXX&#10;https://drive.google.com/file/d/XXXXXXXXXXXX/view&#10;https://ejemplo.com/imagen.jpg"
+                placeholder="https://drive.google.com/drive/folders/XXXXXXXXXXXX&#10;https://ejemplo.com/imagen.jpg"
               ></textarea>
             </label>
 
             <div class="admin-actions">
               <button class="btn btn--solid" type="button" id="scan-sources">
                 <iconify-icon icon="ph:arrows-clockwise"></iconify-icon>
-                Escanear enlaces
+                Escanear
               </button>
               <button class="btn" type="button" id="import-all" disabled>
                 <iconify-icon icon="ph:download-simple"></iconify-icon>
@@ -184,19 +151,13 @@
               </button>
               <button class="btn" type="button" id="clear-input">
                 <iconify-icon icon="ph:eraser"></iconify-icon>
-                Limpiar campo
+                Limpiar
               </button>
             </div>
 
-            <p class="admin-hint">
-              Acepta enlaces de carpeta de Drive, archivos de Drive y URLs
-              directas a imágenes. Google Fotos e iCloud no permiten lectura
-              pública desde el navegador.
-            </p>
-
             <div class="scan-results" id="scan-results" aria-live="polite"></div>
 
-            <p class="mono" id="sources-label">Fuentes guardadas</p>
+            <p class="mono" id="sources-label" hidden>Fuentes guardadas</p>
             <div class="sources-list" id="sources-list"></div>
           </div>
         </section>
@@ -206,10 +167,7 @@
              ====================================================== -->
         <section class="panel" id="obras" aria-labelledby="works-title">
           <div class="panel__head">
-            <div>
-              <p class="mono">02 · Edición</p>
-              <h2 class="panel__title" id="works-title">La <em>obra</em></h2>
-            </div>
+            <h2 class="panel__title" id="works-title">Obra<em>.</em></h2>
             <span class="badge" id="works-badge">0 obras</span>
           </div>
 
@@ -227,19 +185,10 @@
               </button>
             </div>
 
-            <p class="admin-hint">
-              Cada cambio se guarda como borrador en este navegador. Nada se
-              publica hasta que descargues galeria.json.
-            </p>
-
             <div class="work-list" id="works-list"></div>
 
             <div class="admin-empty" id="works-empty" hidden>
               <p class="mono">Sin obra todavía</p>
-              <p>
-                Pega enlaces de Drive arriba o carga las 32 obras de
-                demostración desde la sección Publicar.
-              </p>
             </div>
           </div>
         </section>
@@ -249,147 +198,34 @@
              ====================================================== -->
         <section class="panel" id="publicar" aria-labelledby="publish-title">
           <div class="panel__head">
-            <div>
-              <p class="mono">03 · Salida</p>
-              <h2 class="panel__title" id="publish-title">Publicar<em>.</em></h2>
-            </div>
+            <h2 class="panel__title" id="publish-title">Publicar<em>.</em></h2>
             <span class="badge badge--draft" id="publish-status">Borrador local</span>
           </div>
 
           <div class="panel__body">
-            <p>
-              El sitio público lee <code>assets/data/galeria.json</code>.
-              Descarga el archivo, reemplaza el existente y sube el cambio
-              a tu repositorio. No hace falta volver a desplegar el panel.
-            </p>
-
-            <div class="publish-grid">
-              <article class="publish-card">
-                <h3>Archivo del sitio</h3>
-                <p>
-                  Genera el JSON con todas las obras y sus metadatos. Es el
-                  único archivo que la galería necesita para actualizarse.
-                </p>
-                <div class="admin-actions">
-                  <button class="btn btn--solid" type="button" id="publish-download">
-                    <iconify-icon icon="ph:download-simple"></iconify-icon>
-                    Descargar JSON
-                  </button>
-                  <button class="btn" type="button" id="publish-copy">
-                    <iconify-icon icon="ph:copy"></iconify-icon>
-                    Copiar
-                  </button>
-                </div>
-              </article>
-
-              <article class="publish-card">
-                <h3>Importar un JSON</h3>
-                <p>
-                  Recupera un archivo descargado antes o continúa el trabajo
-                  en otro navegador. Reemplaza el borrador actual.
-                </p>
-                <div class="admin-actions">
-                  <button class="btn" type="button" id="import-json">
-                    <iconify-icon icon="ph:upload-simple"></iconify-icon>
-                    Elegir archivo
-                  </button>
-                  <input type="file" id="import-file" accept="application/json,.json" hidden>
-                </div>
-              </article>
-
-              <article class="publish-card">
-                <h3>Demostración</h3>
-                <p>
-                  Carga las 32 piezas locales para revisar el diseño, las
-                  paletas y el visor sin depender de Drive.
-                </p>
-                <div class="admin-actions">
-                  <button class="btn" type="button" id="load-demo">
-                    <iconify-icon icon="ph:sparkle"></iconify-icon>
-                    Cargar demo
-                  </button>
-                </div>
-              </article>
-
-              <article class="publish-card">
-                <h3>Empezar de cero</h3>
-                <p>
-                  Vacía el borrador de este navegador. No borra el
-                  galeria.json que ya esté publicado en el sitio.
-                </p>
-                <div class="admin-actions">
-                  <button class="btn btn--danger" type="button" id="clear-draft">
-                    <iconify-icon icon="ph:trash"></iconify-icon>
-                    Vaciar borrador
-                  </button>
-                </div>
-              </article>
+            <div class="admin-actions">
+              <button class="btn btn--solid" type="button" id="publish-download">
+                <iconify-icon icon="ph:download-simple"></iconify-icon>
+                Descargar JSON
+              </button>
+              <button class="btn" type="button" id="publish-copy">
+                <iconify-icon icon="ph:copy"></iconify-icon>
+                Copiar
+              </button>
+              <button class="btn" type="button" id="import-json">
+                <iconify-icon icon="ph:upload-simple"></iconify-icon>
+                Importar JSON
+              </button>
+              <input type="file" id="import-file" accept="application/json,.json" hidden>
+              <button class="btn" type="button" id="load-demo">
+                <iconify-icon icon="ph:sparkle"></iconify-icon>
+                Cargar demo
+              </button>
+              <button class="btn btn--danger" type="button" id="clear-draft">
+                <iconify-icon icon="ph:trash"></iconify-icon>
+                Vaciar borrador
+              </button>
             </div>
-
-            <div class="admin-note" id="publish-note">
-              <strong>Publicar en GitHub Pages o Vercel:</strong>
-              coloca el archivo en <code>assets/data/galeria.json</code>,
-              haz commit y sube el repositorio. La galería se actualiza al
-              recargar, sin API key y sin backend.
-            </div>
-
-            <ol class="steps">
-              <li>Descarga <code>galeria.json</code> con el botón de arriba.</li>
-              <li>Reemplaza <code>assets/data/galeria.json</code> en el proyecto.</li>
-              <li>Revisa la portada, el archivo y el visor en local.</li>
-              <li>Haz commit y publica con GitHub Pages, Vercel o Netlify.</li>
-            </ol>
-          </div>
-        </section>
-
-        <!-- ======================================================
-             4. AYUDA
-             ====================================================== -->
-        <section class="panel" id="ayuda" aria-labelledby="help-title">
-          <div class="panel__head">
-            <div>
-              <p class="mono">04 · Referencia</p>
-              <h2 class="panel__title" id="help-title">Cómo <em>funciona</em></h2>
-            </div>
-            <span class="badge">Sin backend</span>
-          </div>
-
-          <div class="panel__body">
-            <div class="admin-note">
-              <strong>Sobre la API key.</strong>
-              Una API key en JavaScript es visible para cualquiera que abra
-              el panel. Restríngela a Google Drive API y a los dominios donde
-              lo publiques; si el panel es solo para ti, úsalo en local y no
-              lo despliegues con la key.
-            </div>
-
-            <ol class="steps">
-              <li>
-                Comparte la carpeta de Drive como «Cualquiera con el enlace»
-                y copia su URL.
-              </li>
-              <li>
-                Pega uno o varios enlaces en Fuentes y pulsa «Escanear enlaces».
-              </li>
-              <li>
-                Importa las imágenes y edita la ficha de cada obra: título,
-                fecha, técnica, medidas, categoría y descripción.
-              </li>
-              <li>
-                Usa las flechas de cada ficha para ordenar la curaduría. Ese
-                orden es el que verá el público.
-              </li>
-              <li>
-                Descarga <code>galeria.json</code> y colócalo en
-                <code>assets/data/</code>. La galería lo lee al instante.
-              </li>
-            </ol>
-
-            <p class="admin-hint">
-              Sin <code>galeria.json</code>, el sitio muestra automáticamente
-              las 32 obras de demostración. Un manifiesto publicado con cero
-              obras muestra el estado vacío, no la demo.
-            </p>
           </div>
         </section>
       </div>
@@ -397,18 +233,14 @@
   </main>
 
   <footer class="site-footer">
-    <div class="site-footer__top">
-      <p class="site-footer__credit">Hecho con amor por Lott Campuzano y OpenCode</p>
+    <div class="site-footer__bottom">
+      <span class="mono">2026 Lott Campuzano</span>
       <nav class="site-footer__nav" aria-label="Enlaces del pie">
         <a href="index.html">Inicio</a>
         <a href="obra.html">Obra</a>
         <a href="autor.html">Autor</a>
         <a href="https://github.com/Lott-Campuzano" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
-    </div>
-    <div class="site-footer__bottom">
-      <span class="mono">© <span data-year>2026</span> Galería Campuzano</span>
-      <span class="mono">Panel local · sin servidor</span>
     </div>
   </footer>
 

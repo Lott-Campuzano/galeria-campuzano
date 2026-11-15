@@ -43,7 +43,7 @@
 }
 
 .site-header.is-scrolled {
-  background-color: rgba(241, 236, 226, 0.72);
+  background-color: rgba(250, 248, 243, 0.72);
   border-bottom-color: var(--line);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px) saturate(165%);
@@ -56,25 +56,6 @@
   gap: 0.65rem;
   justify-self: start;
   min-width: 0;
-}
-
-.brand__mark {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid var(--ink);
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
-}
-
-.brand:hover .brand__mark {
-  background: var(--dyn);
-  border-color: var(--dyn);
-  color: var(--dyn-contrast);
 }
 
 .brand__name {
@@ -425,7 +406,7 @@
   left: 0.65rem;
   padding: 0.24rem 0.42rem;
   border: 1px solid rgba(255, 255, 255, 0.65);
-  background: rgba(241, 236, 226, 0.78);
+  background: rgba(250, 248, 243, 0.8);
   color: var(--ink);
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
@@ -536,7 +517,7 @@
   overflow: hidden;
   margin-top: var(--header-h);
   padding: clamp(2.5rem, 6vw, 6rem) var(--gutter) clamp(2rem, 4vw, 3.5rem);
-  background: var(--ink);
+  background: var(--ink-deep);
   color: var(--paper);
   --line: var(--line-invert);
   --line-strong: var(--line-invert-strong);
@@ -596,7 +577,7 @@
    para que cualquier sección pueda colocarse sobre negro sin
    duplicar reglas. */
 .band--ink {
-  background: var(--ink);
+  background: var(--ink-deep);
   color: var(--paper);
   --line: var(--line-invert);
   --line-strong: var(--line-invert-strong);
@@ -868,7 +849,7 @@
   position: relative;
   overflow: hidden;
   padding: clamp(2.5rem, 6vw, 6rem) var(--gutter) clamp(2.5rem, 5vw, 4rem);
-  background: var(--ink);
+  background: var(--ink-deep);
   color: var(--paper);
   --line: var(--line-invert);
   --line-strong: var(--line-invert-strong);
@@ -1301,30 +1282,13 @@
 
 /* ------------------------------------------------------------
    9. PIE DE PÁGINA
-   El crédito es un texto fijo: no debe cambiarse.
+   Una sola línea: año y autor a la izquierda, enlaces a la derecha.
    ------------------------------------------------------------ */
 .site-footer {
   padding: clamp(2rem, 4vw, 3rem) var(--gutter) 1.25rem;
-  background: var(--ink);
+  background: var(--ink-deep);
   color: var(--paper);
   border-top: 1px solid rgba(242, 242, 242, 0.16);
-}
-
-.site-footer__top {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
-  border-bottom: 1px solid rgba(242, 242, 242, 0.16);
-}
-
-.site-footer__credit {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.8vw, 2.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
 }
 
 .site-footer__nav {
@@ -1348,10 +1312,10 @@
 
 .site-footer__bottom {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  padding-top: 1rem;
   color: rgba(242, 242, 242, 0.62);
 }
 
@@ -1447,7 +1411,7 @@
   justify-content: center;
   min-height: 0;
   padding: clamp(1.25rem, 3.5vw, 3.5rem);
-  background-color: var(--ink);
+  background-color: var(--ink-deep);
   background-image: radial-gradient(
     62% 62% at 50% 45%,
     rgba(var(--dyn-rgb), 0.3) 0%,
@@ -1609,7 +1573,7 @@
     gap: 0;
     padding: 0.5rem var(--gutter) 1.5rem;
     border-bottom: 1px solid var(--line);
-    background-color: rgba(248, 244, 236, 0.92);
+    background-color: rgba(250, 248, 243, 0.92);
     box-shadow: 0 30px 60px -40px rgba(13, 13, 13, 0.5);
     backdrop-filter: blur(26px) saturate(170%);
     -webkit-backdrop-filter: blur(26px) saturate(170%);

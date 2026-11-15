@@ -126,9 +126,9 @@
     const accent = tuneAccent(hex);
     return {
       accent,
-      soft: mix(accent, "#f1ece2", 0.82),
+      soft: mix(accent, "#faf8f3", 0.82),
       deep: mix(accent, "#0d0d0d", 0.36),
-      tint: mix(accent, "#f1ece2", 0.93),
+      tint: mix(accent, "#faf8f3", 0.93),
       contrast: luminance(accent) > 0.44 ? "#0d0d0d" : "#fffaf3"
     };
   }

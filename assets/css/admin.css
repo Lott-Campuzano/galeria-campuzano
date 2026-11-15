@@ -29,7 +29,7 @@
   position: relative;
   overflow: hidden;
   padding: clamp(2.5rem, 5vw, 5rem) var(--gutter) clamp(2rem, 4vw, 3.5rem);
-  background: var(--ink);
+  background: var(--ink-deep);
   color: var(--paper);
   --line: var(--line-invert);
   --line-strong: var(--line-invert-strong);
@@ -142,6 +142,11 @@
   padding: clamp(1.5rem, 3vw, 2.5rem) var(--gutter) clamp(4rem, 7vw, 7rem);
 }
 
+/* Sin índice lateral: una sola columna centrada en el formulario. */
+.admin-layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .admin-nav {
   position: sticky;
   top: calc(var(--header-h) + 1rem);
@@ -194,7 +199,7 @@
    ------------------------------------------------------------ */
 .panel {
   border: 1px solid var(--line);
-  background: rgba(248, 244, 236, 0.6);
+  background: rgba(250, 248, 243, 0.6);
   scroll-margin-top: calc(var(--header-h) + 1rem);
 }
 

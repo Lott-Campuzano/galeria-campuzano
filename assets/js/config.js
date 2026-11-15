@@ -137,7 +137,5 @@ window.GC_CONFIG = {
       }
     ],
 
-    /* Crédito del pie. El texto debe permanecer idéntico. */
-    credit: "Hecho con amor por Lott Campuzano y OpenCode"
   }
 };

@@ -68,7 +68,6 @@
     quote: SITE.quote,
     quoteAuthor: SITE.quoteAuthor,
     availability: SITE.availability,
-    credit: SITE.credit,
     email: SITE.email
   };
 

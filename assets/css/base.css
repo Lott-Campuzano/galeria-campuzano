@@ -12,7 +12,8 @@
    5. Botones, enlaces, formularios y estados.
 
    Reglas de diseño tomadas de los proyectos de Lott:
-   - Negro #0D0D0D y blanco #F2F2F2 de alto contraste.
+   - Negro #0D0D0D para la tinta y gris profundo #1E1E21 para
+     las bandas oscuras, sobre blanco hueso #FAF8F3.
    - Coral #F25E3D como acento de marca.
    - Retícula visible, bordes como estructura, cero esquinas
      redondeadas.
@@ -28,12 +29,16 @@
    ------------------------------------------------------------ */
 :root {
   /* Papel y tinta */
-  --paper: #f1ece2;
-  --paper-2: #f8f4ec;
-  --paper-3: #e5ded0;
+  /* Blanco hueso: apenas cálido, sin llegar al beige. */
+  --paper: #faf8f3;
+  --paper-2: #fffdf8;
+  --paper-3: #ede8df;
   --ink: #0d0d0d;
   --ink-2: #1d1c1a;
   --ink-3: #3e3e40;
+  /* Gris profundo para bandas, visor y pie: mantiene el contraste
+     con el blanco hueso sin caer en el negro absoluto. */
+  --ink-deep: #1e1e21;
   --muted: #70675b;
   --white: #ffffff;
 
@@ -70,8 +75,8 @@
   --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
 
   /* Tintes acrílicos */
-  --acrylic: rgba(248, 244, 236, 0.66);
-  --acrylic-strong: rgba(248, 244, 236, 0.86);
+  --acrylic: rgba(250, 248, 243, 0.66);
+  --acrylic-strong: rgba(250, 248, 243, 0.86);
   --acrylic-dark: rgba(13, 13, 13, 0.66);
   --acrylic-dark-strong: rgba(13, 13, 13, 0.86);
 }
@@ -544,7 +549,7 @@ textarea:focus {
 .state {
   padding: clamp(2.5rem, 6vw, 5rem);
   border: 1px solid var(--line);
-  background: rgba(248, 244, 236, 0.5);
+  background: rgba(250, 248, 243, 0.5);
   text-align: center;
 }
 
