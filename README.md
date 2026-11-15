@@ -19,7 +19,8 @@ JavaScript, SVG y un archivo JSON de datos.
 - **Autor**: retrato, declaración, prácticas, ficha técnica, redes y una
   selección aleatoria de obra.
 - **Panel**: importación desde enlaces de Drive, edición de metadatos,
-  borrador local, exportación e importación de `galeria.json`.
+  borrador local, exportación e importación de `galeria.json`. Vive solo en
+  local: no está enlazado ni indexado en el sitio público.
 - **Color dinámico**: cada obra aporta su color dominante al ambiente, al
   acento y al fondo del visor, con respaldo determinista si el CDN bloquea
   la lectura por canvas.
@@ -34,7 +35,7 @@ galeria-campuzano/
 ├── index.html              Portada
 ├── obra.html               Archivo y colecciones
 ├── autor.html              Página del autor
-├── admin.html              Panel local
+├── admin.html              Panel local (sin enlaces en el sitio)
 ├── assets/
 │   ├── css/
 │   │   ├── base.css        Variables, reinicio, botones, formularios
@@ -75,12 +76,28 @@ python3 -m http.server 8000
 Abre `http://localhost:8000/`. No abras los HTML con `file://`: el manifiesto
 se carga con `fetch` y el navegador bloquea esa petición.
 
+## El panel es local
+
+`admin.html` no está enlazado desde el sitio público y no aparece en ninguna
+navegación. Se abre a mano desde tu equipo:
+
+```text
+http://localhost:8000/admin.html
+```
+
+El archivo se conserva en el repositorio, pero el sitio de producción no lo
+muestra. Al no tener backend ni sesión, cualquiera que adivine la URL puede
+cargar la página; no puede leer Drive sin la API key, y el panel solo escribe
+en el navegador de quien lo abre. Si quieres que ni siquiera exista en
+producción, borra `admin.html` antes de desplegar o usa un host con reglas de
+exclusión.
+
 ## Cómo se publica la obra
 
-1. Abre `admin.html`.
+1. Abre `admin.html` en local.
 2. Pega una o varias URLs de carpetas públicas de Drive (o enlaces directos
-   a imágenes) en **Fuentes**.
-3. Pulsa **Escanear enlaces** e importa las imágenes que quieras.
+   a imágenes) en **Carpetas**.
+3. Pulsa **Escanear** e importa las imágenes que quieras.
 4. Edita título, fecha, técnica, medidas, categoría y descripción.
 5. Ordena la curaduría con las flechas de cada ficha.
 6. Marca **Publicada** solo las piezas que deben verse.

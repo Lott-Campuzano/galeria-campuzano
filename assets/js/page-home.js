@@ -50,11 +50,9 @@
       <p class="mono">Sala en preparación</p>
       <p class="state__title">La obra se está colgando.</p>
       <p class="state__text">
-        Todavía no hay piezas publicadas. Puedes importar una carpeta
-        pública de Google Drive o cargar la demostración desde el panel.
+        Todavía no hay piezas publicadas. Vuelve pronto.
       </p>
       <div class="state__actions">
-        <a class="btn btn--solid" href="admin.html">Abrir el panel <iconify-icon icon="ph:arrow-up-right"></iconify-icon></a>
         <a class="btn" href="autor.html">Conocer al autor</a>
       </div>`;
   }

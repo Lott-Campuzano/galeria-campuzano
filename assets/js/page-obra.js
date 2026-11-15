@@ -257,11 +257,9 @@
         <p class="mono">Archivo vacío</p>
         <p class="state__title">La obra se está colgando.</p>
         <p class="state__text">
-          Todavía no hay piezas publicadas. Puedes cargar las obras de demostración
-          o importar una carpeta pública de Google Drive desde el panel.
+          Todavía no hay piezas publicadas. Vuelve pronto.
         </p>
         <div class="state__actions">
-          <a class="btn btn--solid" href="admin.html">Abrir el panel <iconify-icon icon="ph:arrow-up-right"></iconify-icon></a>
           <a class="btn" href="index.html">Volver a la portada</a>
         </div>`;
     }
