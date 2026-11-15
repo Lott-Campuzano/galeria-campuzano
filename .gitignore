@@ -1,0 +1,19 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Registros y entornos locales
+*.log
+.env
+.env.*
+
+# Dependencias (el proyecto no las usa, pero evitamos ruido)
+node_modules/
+
+# Editores
+.vscode/
+.idea/
+
+# Archivos temporales de exportación
+galeria-copia*.json

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 1000" width="1250" height="1000" role="img">
+  <defs>
+  <filter id="gr" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope=".22"/></feComponentTransfer>
+  </filter></defs>
+  <rect width="1250" height="1000" fill="#e6e0d2"/>
+  <rect width="1250" height="1000" fill="#e6e0d2"/><ellipse cx="625" cy="500" rx="120" ry="69.3007790814154" fill="none" stroke="#20212a" stroke-width="1.4462282769382" opacity="0.25" transform="rotate(-8.103869939222932 625 500)"/><ellipse cx="625" cy="500" rx="185" ry="133.66000360262115" fill="none" stroke="#3e4f66" stroke-width="1.4780615423806012" opacity="0.32" transform="rotate(17.219340316951275 625 500)"/><ellipse cx="625" cy="500" rx="250" ry="170.92316565976944" fill="none" stroke="#20212a" stroke-width="2.9355995496734977" opacity="0.39" transform="rotate(-13.748875511810184 625 500)"/><ellipse cx="625" cy="500" rx="315" ry="181.86635549739006" fill="none" stroke="#3e4f66" stroke-width="1.696252956520766" opacity="0.46" transform="rotate(-1.5082265250384808 625 500)"/><ellipse cx="625" cy="500" rx="380" ry="331.6332024864387" fill="none" stroke="#20212a" stroke-width="2.435513013973832" opacity="0.53" transform="rotate(15.434414772316813 625 500)"/><ellipse cx="625" cy="500" rx="445" ry="438.44987034832593" fill="none" stroke="#3e4f66" stroke-width="1.0420889765955508" opacity="0.6000000000000001" transform="rotate(-7.481926903128624 625 500)"/><circle cx="625" cy="500" r="60" fill="#a7a58e"/><rect x="100" y="80" width="125" height="100" fill="#3e4f66" opacity=".8"/>
+  <rect width="1250" height="1000" filter="url(#gr)" opacity=".5" style="mix-blend-mode:multiply"/>
+</svg>

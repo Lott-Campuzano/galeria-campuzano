@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1050" width="1400" height="1050" role="img">
+  <defs>
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+  </filter>
+  <filter id="grainSoft" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="3" stitchTiles="stitch" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+  </filter></defs>
+  <rect width="1400" height="1050" fill="#efeae0"/>
+  
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e3f46"/>
+      <stop offset=".5" stop-color="#1a6a6b"/>
+      <stop offset="1" stop-color="#a7c4b4"/>
+    </linearGradient>
+    <filter id="blurBg"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+  <rect width="1400" height="1050" fill="url(#sea)"/>
+  <g filter="url(#blurBg)" opacity=".8">
+    <ellipse cx="420" cy="330" rx="420" ry="220" fill="#74a79a"/>
+    <ellipse cx="1050" cy="640" rx="500" ry="260" fill="#0b2b31"/>
+    <ellipse cx="650" cy="850" rx="480" ry="150" fill="#d7c9a8"/>
+  </g>
+  <g fill="none" stroke-linecap="round">
+    <path d="M-40 180 C 300 120, 700 230, 1440 160" stroke="#efe4c8" stroke-width="3" opacity="0.08"/><path d="M-10 204 C 300 174, 700 234, 1440 184" stroke="#9fc4b6" stroke-width="1.2" opacity="0.13"/><path d="M20 228 C 300 228, 700 238, 1440 208" stroke="#9fc4b6" stroke-width="1.2" opacity="0.17"/><path d="M50 252 C 300 192, 700 242, 1440 232" stroke="#9fc4b6" stroke-width="1.2" opacity="0.22"/><path d="M80 276 C 300 246, 700 326, 1440 256" stroke="#9fc4b6" stroke-width="1.2" opacity="0.26"/><path d="M-40 300 C 300 300, 700 330, 1440 280" stroke="#9fc4b6" stroke-width="1.2" opacity="0.30"/><path d="M-10 324 C 300 264, 700 334, 1440 304" stroke="#9fc4b6" stroke-width="1.2" opacity="0.08"/><path d="M20 348 C 300 318, 700 338, 1440 328" stroke="#efe4c8" stroke-width="3" opacity="0.13"/><path d="M50 372 C 300 372, 700 422, 1440 352" stroke="#9fc4b6" stroke-width="1.2" opacity="0.17"/><path d="M80 396 C 300 336, 700 426, 1440 376" stroke="#9fc4b6" stroke-width="1.2" opacity="0.22"/><path d="M-40 420 C 300 390, 700 430, 1440 400" stroke="#9fc4b6" stroke-width="1.2" opacity="0.26"/><path d="M-10 444 C 300 444, 700 434, 1440 424" stroke="#9fc4b6" stroke-width="1.2" opacity="0.30"/><path d="M20 468 C 300 408, 700 518, 1440 448" stroke="#9fc4b6" stroke-width="1.2" opacity="0.08"/><path d="M50 492 C 300 462, 700 522, 1440 472" stroke="#9fc4b6" stroke-width="1.2" opacity="0.13"/><path d="M80 516 C 300 516, 700 526, 1440 496" stroke="#efe4c8" stroke-width="3" opacity="0.17"/><path d="M-40 540 C 300 480, 700 530, 1440 520" stroke="#9fc4b6" stroke-width="1.2" opacity="0.22"/><path d="M-10 564 C 300 534, 700 614, 1440 544" stroke="#9fc4b6" stroke-width="1.2" opacity="0.26"/><path d="M20 588 C 300 588, 700 618, 1440 568" stroke="#9fc4b6" stroke-width="1.2" opacity="0.30"/><path d="M50 612 C 300 552, 700 622, 1440 592" stroke="#9fc4b6" stroke-width="1.2" opacity="0.08"/><path d="M80 636 C 300 606, 700 626, 1440 616" stroke="#9fc4b6" stroke-width="1.2" opacity="0.13"/><path d="M-40 660 C 300 660, 700 710, 1440 640" stroke="#9fc4b6" stroke-width="1.2" opacity="0.17"/><path d="M-10 684 C 300 624, 700 714, 1440 664" stroke="#efe4c8" stroke-width="3" opacity="0.22"/><path d="M20 708 C 300 678, 700 718, 1440 688" stroke="#9fc4b6" stroke-width="1.2" opacity="0.26"/><path d="M50 732 C 300 732, 700 722, 1440 712" stroke="#9fc4b6" stroke-width="1.2" opacity="0.30"/><path d="M80 756 C 300 696, 700 806, 1440 736" stroke="#9fc4b6" stroke-width="1.2" opacity="0.08"/><path d="M-40 780 C 300 750, 700 810, 1440 760" stroke="#9fc4b6" stroke-width="1.2" opacity="0.13"/><path d="M-10 804 C 300 804, 700 814, 1440 784" stroke="#9fc4b6" stroke-width="1.2" opacity="0.17"/><path d="M20 828 C 300 768, 700 818, 1440 808" stroke="#9fc4b6" stroke-width="1.2" opacity="0.22"/><path d="M50 852 C 300 822, 700 902, 1440 832" stroke="#efe4c8" stroke-width="3" opacity="0.26"/><path d="M80 876 C 300 876, 700 906, 1440 856" stroke="#9fc4b6" stroke-width="1.2" opacity="0.30"/><path d="M-40 900 C 300 840, 700 910, 1440 880" stroke="#9fc4b6" stroke-width="1.2" opacity="0.08"/><path d="M-10 924 C 300 894, 700 914, 1440 904" stroke="#9fc4b6" stroke-width="1.2" opacity="0.13"/><path d="M20 948 C 300 948, 700 998, 1440 928" stroke="#9fc4b6" stroke-width="1.2" opacity="0.17"/><path d="M50 972 C 300 912, 700 1002, 1440 952" stroke="#9fc4b6" stroke-width="1.2" opacity="0.22"/>
+  </g>
+  <circle cx="1120" cy="240" r="86" fill="#e8dcc0" opacity=".9"/>
+  <circle cx="1120" cy="240" r="86" fill="none" stroke="#173f42" stroke-width="1.5" opacity=".4"/>
+  <text x="80" y="960" font-family="Helvetica, Arial" font-size="17" letter-spacing="7" fill="#efe9da" opacity=".7">CUERPO DE AGUA</text>
+
+  <rect width="1400" height="1050" filter="url(#grain)" style="mix-blend-mode:multiply" opacity=".55"/>
+</svg>

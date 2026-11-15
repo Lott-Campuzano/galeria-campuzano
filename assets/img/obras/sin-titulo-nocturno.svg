@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1050" width="1400" height="1050" role="img">
+  <defs>
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+  </filter>
+  <filter id="grainSoft" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="3" stitchTiles="stitch" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+  </filter></defs>
+  <rect width="1400" height="1050" fill="#efeae0"/>
+  
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c1a2a"/>
+      <stop offset=".6" stop-color="#16354a"/>
+      <stop offset="1" stop-color="#071018"/>
+    </linearGradient>
+    <radialGradient id="moon" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#e9edef"/>
+      <stop offset=".65" stop-color="#cfd8dd" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#cfd8dd" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="1050" fill="url(#night)"/>
+  <circle cx="1010" cy="300" r="180" fill="url(#moon)" opacity=".65"/>
+  <circle cx="1010" cy="300" r="64" fill="#e7ecee"/>
+  <g fill="#e7ecee">
+    <circle cx="60" cy="40" r="0.7" opacity="0.25"/><circle cx="283" cy="197" r="1.2999999999999998" opacity="0.32"/><circle cx="506" cy="354" r="1.9" opacity="0.39"/><circle cx="729" cy="511" r="0.7" opacity="0.45999999999999996"/><circle cx="952" cy="48" r="1.2999999999999998" opacity="0.53"/><circle cx="1175" cy="205" r="1.9" opacity="0.6"/><circle cx="98" cy="362" r="0.7" opacity="0.6699999999999999"/><circle cx="321" cy="519" r="1.2999999999999998" opacity="0.74"/><circle cx="544" cy="56" r="1.9" opacity="0.31"/><circle cx="767" cy="213" r="0.7" opacity="0.38"/><circle cx="990" cy="370" r="1.2999999999999998" opacity="0.45"/><circle cx="1213" cy="527" r="1.9" opacity="0.52"/><circle cx="136" cy="64" r="0.7" opacity="0.5900000000000001"/><circle cx="359" cy="221" r="1.2999999999999998" opacity="0.6599999999999999"/><circle cx="582" cy="378" r="1.9" opacity="0.73"/><circle cx="805" cy="535" r="0.7" opacity="0.3"/><circle cx="1028" cy="72" r="1.2999999999999998" opacity="0.37"/><circle cx="1251" cy="229" r="1.9" opacity="0.44"/><circle cx="174" cy="386" r="0.7" opacity="0.51"/><circle cx="397" cy="543" r="1.2999999999999998" opacity="0.5800000000000001"/><circle cx="620" cy="80" r="1.9" opacity="0.65"/><circle cx="843" cy="237" r="0.7" opacity="0.72"/><circle cx="1066" cy="394" r="1.2999999999999998" opacity="0.29"/><circle cx="1289" cy="551" r="1.9" opacity="0.36"/><circle cx="212" cy="88" r="0.7" opacity="0.43"/><circle cx="435" cy="245" r="1.2999999999999998" opacity="0.5"/><circle cx="658" cy="402" r="1.9" opacity="0.5700000000000001"/><circle cx="881" cy="559" r="0.7" opacity="0.64"/><circle cx="1104" cy="96" r="1.2999999999999998" opacity="0.71"/><circle cx="1327" cy="253" r="1.9" opacity="0.28"/><circle cx="250" cy="410" r="0.7" opacity="0.35"/><circle cx="473" cy="567" r="1.2999999999999998" opacity="0.42000000000000004"/><circle cx="696" cy="104" r="1.9" opacity="0.49"/><circle cx="919" cy="261" r="0.7" opacity="0.56"/><circle cx="1142" cy="418" r="1.2999999999999998" opacity="0.63"/><circle cx="65" cy="575" r="1.9" opacity="0.7"/><circle cx="288" cy="112" r="0.7" opacity="0.27"/><circle cx="511" cy="269" r="1.2999999999999998" opacity="0.33999999999999997"/><circle cx="734" cy="426" r="1.9" opacity="0.41000000000000003"/><circle cx="957" cy="583" r="0.7" opacity="0.48"/><circle cx="1180" cy="120" r="1.2999999999999998" opacity="0.55"/><circle cx="103" cy="277" r="1.9" opacity="0.62"/><circle cx="326" cy="434" r="0.7" opacity="0.69"/><circle cx="549" cy="591" r="1.2999999999999998" opacity="0.26"/><circle cx="772" cy="128" r="1.9" opacity="0.33"/><circle cx="995" cy="285" r="0.7" opacity="0.4"/><circle cx="1218" cy="442" r="1.2999999999999998" opacity="0.47"/><circle cx="141" cy="599" r="1.9" opacity="0.54"/><circle cx="364" cy="136" r="0.7" opacity="0.61"/><circle cx="587" cy="293" r="1.2999999999999998" opacity="0.6799999999999999"/><circle cx="810" cy="450" r="1.9" opacity="0.25"/><circle cx="1033" cy="607" r="0.7" opacity="0.32"/><circle cx="1256" cy="144" r="1.2999999999999998" opacity="0.39"/><circle cx="179" cy="301" r="1.9" opacity="0.45999999999999996"/><circle cx="402" cy="458" r="0.7" opacity="0.53"/>
+  </g>
+  <path d="M0 760 C 250 700, 380 800, 620 750 S 980 690, 1200 760 S 1350 780, 1400 740 L 1400 1050 L 0 1050 Z" fill="#050b10"/>
+  <path d="M0 760 C 250 700, 380 800, 620 750 S 980 690, 1200 760 S 1350 780, 1400 740" fill="none" stroke="#c8d5d8" stroke-width="2" opacity=".35"/>
+  <g fill="#d9e2e4" opacity=".3">
+    <rect x="300" y="820" width="2" height="90"/><rect x="330" y="840" width="2" height="70"/>
+    <rect x="880" y="830" width="2" height="80"/><rect x="910" y="855" width="2" height="55"/>
+  </g>
+  <text x="70" y="980" font-family="Helvetica, Arial" font-size="15" letter-spacing="7" fill="#dbe4e6" opacity=".6">SIN TÍTULO (NOCTURNO)</text>
+
+  <rect width="1400" height="1050" filter="url(#grain)" style="mix-blend-mode:multiply" opacity=".55"/>
+</svg>

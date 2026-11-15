@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1350" width="1000" height="1350" role="img">
+  <defs>
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+  </filter>
+  <filter id="grainSoft" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="3" stitchTiles="stitch" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+  </filter></defs>
+  <rect width="1000" height="1350" fill="#efeae0"/>
+  
+  <rect width="1000" height="1350" fill="#e9e3d6"/>
+  <g fill="#181715" opacity=".85">
+    <ellipse cx="480" cy="560" rx="300" ry="380" filter="url(#grainSoft)" opacity=".12"/>
+  </g>
+  <g fill="none" stroke="#181715" stroke-linecap="round">
+    <path d="M160 1080 C 220 900, 70 760, 190 580 S 310 340, 200 180" stroke-width="1.5" opacity="0.18"/><path d="M202 1080 C 262 882, 112 772, 232 620 S 352 320, 242 210" stroke-width="3.7" opacity="0.32"/><path d="M244 1080 C 304 864, 154 784, 274 660 S 394 300, 284 240" stroke-width="5.9" opacity="0.46"/><path d="M286 1080 C 346 846, 196 796, 316 700 S 436 280, 326 180" stroke-width="8.100000000000001" opacity="0.6000000000000001"/><path d="M328 1080 C 388 828, 238 808, 358 740 S 478 340, 368 210" stroke-width="1.5" opacity="0.74"/><path d="M370 1080 C 430 810, 280 820, 400 580 S 520 320, 410 240" stroke-width="3.7" opacity="0.18"/><path d="M412 1080 C 472 792, 322 832, 442 620 S 562 300, 452 180" stroke-width="5.9" opacity="0.32"/><path d="M454 1080 C 514 774, 364 844, 484 660 S 604 280, 494 210" stroke-width="8.100000000000001" opacity="0.46"/><path d="M496 1080 C 556 756, 406 856, 526 700 S 646 340, 536 240" stroke-width="1.5" opacity="0.6000000000000001"/><path d="M538 1080 C 598 738, 448 868, 568 740 S 688 320, 578 180" stroke-width="3.7" opacity="0.74"/><path d="M580 1080 C 640 720, 490 880, 610 580 S 730 300, 620 210" stroke-width="5.9" opacity="0.18"/><path d="M622 1080 C 682 702, 532 892, 652 620 S 772 280, 662 240" stroke-width="8.100000000000001" opacity="0.32"/><path d="M664 1080 C 724 684, 574 904, 694 660 S 814 340, 704 180" stroke-width="1.5" opacity="0.46"/><path d="M706 1080 C 766 666, 616 916, 736 700 S 856 320, 746 210" stroke-width="3.7" opacity="0.6000000000000001"/><path d="M748 1080 C 808 648, 658 928, 778 740 S 898 300, 788 240" stroke-width="5.9" opacity="0.74"/><path d="M790 1080 C 850 630, 700 940, 820 580 S 940 280, 830 180" stroke-width="8.100000000000001" opacity="0.18"/>
+  </g>
+  <rect x="120" y="170" width="360" height="240" fill="#181715" opacity=".08"/>
+  <path d="M120 410 L 480 410 L 440 170 L 160 170 Z" fill="none" stroke="#181715" stroke-width="1" opacity=".4"/>
+  <text x="90" y="1240" font-family="Helvetica, Arial" font-size="15" letter-spacing="4" fill="#181715" opacity=".55">CUADERNO DE SOMBRAS / HOJA 12</text>
+
+  <rect width="1000" height="1350" filter="url(#grain)" style="mix-blend-mode:multiply" opacity=".55"/>
+</svg>

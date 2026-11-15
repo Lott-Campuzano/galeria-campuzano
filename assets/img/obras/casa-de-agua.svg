@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1050" width="1400" height="1050" role="img">
+  <defs>
+  <filter id="gr" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope=".22"/></feComponentTransfer>
+  </filter></defs>
+  <rect width="1400" height="1050" fill="#eee3d2"/>
+  
+    <rect width="1400" height="1050" fill="#eee3d2"/>
+    <ellipse cx="700" cy="399" rx="252" ry="210" fill="#3c3830"/>
+    <path d="M280 1050 C 308 756, 489.99999999999994 651, 700 651 C 910 651, 1092 756, 1120 1050 Z" fill="#3c3830"/>
+    <circle cx="1008" cy="231" r="168" fill="#9d4b35" opacity=".45"/>
+    <rect x="112" y="84" width="1176" height="882" fill="none" stroke="#d9b18f" stroke-width="1" opacity=".5"/>
+  
+  <rect width="1400" height="1050" filter="url(#gr)" opacity=".5" style="mix-blend-mode:multiply"/>
+</svg>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     GALERÍA CAMPUZANO · archivo de obra
+     ------------------------------------------------------------
+     Esta página reúne toda la obra publicada y la organiza por
+     técnica. Incluye:
+
+     - Filtros por categoría (dibujo, fotografía, pintura…).
+     - Búsqueda por título, técnica, año o descripción.
+     - Orden por curaduría, fecha o título.
+     - Enlaces profundos: obra.html?obra=ID
+     - Filtros compartibles: obra.html?serie=dibujo&q=luz
+
+     La lógica vive en assets/js/page-obra.js.
+     ============================================================ -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Obra — Galería Campuzano</title>
+  <meta name="description" content="Archivo completo de dibujo, fotografía, pintura y técnica mixta de Lott Campuzano.">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Obra — Galería Campuzano">
+  <meta property="og:description" content="Archivo completo de dibujo, fotografía, pintura y técnica mixta.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body data-page="obra">
+  <a class="skip-link" href="#archivo">Saltar al archivo</a>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__glow ambient__glow--a"></span>
+    <span class="ambient__glow ambient__glow--b"></span>
+  </div>
+
+  <!-- CABECERA (idéntica en todas las páginas públicas) -->
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">GC</span>
+      <span class="brand__name">Galería <em>Campuzano</em></span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+      <a href="index.html" data-nav="inicio">Inicio</a>
+      <a href="obra.html" data-nav="obra">Obra</a>
+      <a href="autor.html" data-nav="autor">Autor</a>
+    </nav>
+
+    <div class="header__side">
+      <span class="mono header__meta" data-site="location">Ixtapan de la Sal, México</span>
+      <a class="header__panel mono" href="admin.html" title="Panel de edición">
+        <iconify-icon icon="ph:sliders-horizontal"></iconify-icon>
+        <span>Panel</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+        <iconify-icon icon="ph:list" data-menu-open></iconify-icon>
+        <iconify-icon icon="ph:x" data-menu-close hidden></iconify-icon>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================
+         BANDA DE TÍTULO
+         Bloque negro con el halo de color de la obra visible.
+         ======================================================== -->
+    <section class="page-band" aria-labelledby="archive-title">
+      <div class="page-band__meta mono">
+        <span>Archivo de obra · <span id="works-years">2023 — 2025</span></span>
+        <span><span id="works-count">0</span> piezas</span>
+      </div>
+
+      <h1 class="page-band__title" id="archive-title">Obra<em>.</em></h1>
+
+      <p class="page-band__lead">
+        Dibujo, fotografía, pintura y técnica mixta. Cada pieza conserva
+        su fecha, sus materiales y la paleta que le pertenece.
+      </p>
+    </section>
+
+    <!-- ========================================================
+         ARCHIVO
+         La barra de herramientas es acrílica y se queda fija bajo
+         la cabecera mientras se recorre el mosaico.
+         ======================================================== -->
+    <section class="archive" id="archivo" aria-label="Archivo de obra">
+      <div class="toolbar acrylic">
+        <div class="filters" id="archive-filters" role="group" aria-label="Filtrar por técnica"></div>
+
+        <div class="toolbar__tools">
+          <label class="search">
+            <iconify-icon icon="ph:magnifying-glass"></iconify-icon>
+            <span class="visually-hidden">Buscar en el archivo</span>
+            <input type="search" id="archive-search" placeholder="Buscar título, técnica o año" autocomplete="off">
+          </label>
+
+          <label class="select">
+            <span>Orden</span>
+            <select id="archive-sort" aria-label="Ordenar obra">
+              <option value="curated">Curaduría</option>
+              <option value="recent">Recientes</option>
+              <option value="oldest">Antiguas</option>
+              <option value="title">Título A–Z</option>
+            </select>
+          </label>
+
+          <button class="btn btn--small" type="button" id="archive-reset">
+            <iconify-icon icon="ph:arrow-counter-clockwise"></iconify-icon>
+            Limpiar
+          </button>
+        </div>
+      </div>
+
+      <div class="archive__status">
+        <p class="mono" id="archive-status">Toda la obra</p>
+        <p class="mono">Color ambiental según la pieza</p>
+      </div>
+
+      <div class="state" id="archive-state" hidden></div>
+      <div class="mosaic mosaic--archive" id="archive-grid"></div>
+    </section>
+
+    <!-- ========================================================
+         COLECCIONES
+         Agrupación por técnica. Cada fila filtra el archivo y
+         baja hasta la retícula.
+         ======================================================== -->
+    <section class="band--ink" id="colecciones">
+      <div class="collections" aria-labelledby="collections-title">
+        <div class="collections__head">
+          <h2 class="collections__title" id="collections-title">Colecciones<em>.</em></h2>
+          <p class="mono">Cuatro técnicas · un mismo archivo</p>
+        </div>
+        <div class="collections__list" id="collections-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <p class="site-footer__credit">Hecho con amor por Lott Campuzano y OpenCode</p>
+      <nav class="site-footer__nav" aria-label="Enlaces del pie">
+        <a href="index.html">Inicio</a>
+        <a href="autor.html">Autor</a>
+        <a href="admin.html">Panel</a>
+        <a href="https://github.com/Lott-Campuzano" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <span class="mono">© <span data-year>2026</span> Galería Campuzano</span>
+      <span class="mono" data-site="location">Ixtapan de la Sal, México</span>
+    </div>
+  </footer>
+
+  <div class="now" id="now" aria-hidden="true">
+    <span class="swatch" aria-hidden="true"></span>
+    <span class="now__title" id="now-title"></span>
+    <span class="now__meta" id="now-meta"></span>
+  </div>
+
+  <!-- VISOR DE OBRA (mismo contrato de identificadores) -->
+  <dialog class="work-dialog" id="work-dialog" aria-label="Visor de obra">
+    <div class="work-dialog__bar">
+      <span class="mono" id="dialog-counter">01 / 01</span>
+      <span class="mono work-dialog__hint">← → para navegar · Esc para cerrar</span>
+      <button class="work-dialog__close" id="dialog-close" type="button">
+        <span>Cerrar</span>
+        <iconify-icon icon="ph:x"></iconify-icon>
+      </button>
+    </div>
+
+    <div class="work-dialog__grid">
+      <div class="work-dialog__visual">
+        <button class="work-dialog__nav work-dialog__nav--prev" id="dialog-prev" type="button" aria-label="Obra anterior">
+          <iconify-icon icon="ph:arrow-left"></iconify-icon>
+        </button>
+        <img id="dialog-image" alt="" decoding="async">
+        <button class="work-dialog__nav work-dialog__nav--next" id="dialog-next" type="button" aria-label="Obra siguiente">
+          <iconify-icon icon="ph:arrow-right"></iconify-icon>
+        </button>
+      </div>
+
+      <aside class="work-dialog__info">
+        <p class="mono" id="dialog-category"></p>
+        <h2 class="work-dialog__title" id="dialog-title"></h2>
+        <p class="mono work-dialog__date" id="dialog-date"></p>
+        <p class="work-dialog__description" id="dialog-description"></p>
+
+        <dl class="work-dialog__meta">
+          <div>
+            <dt class="mono">Técnica</dt>
+            <dd id="dialog-technique"></dd>
+          </div>
+          <div>
+            <dt class="mono">Medidas</dt>
+            <dd id="dialog-dimensions"></dd>
+          </div>
+          <div>
+            <dt class="mono">Año</dt>
+            <dd id="dialog-year"></dd>
+          </div>
+        </dl>
+
+        <div class="work-dialog__palette">
+          <span class="swatch" aria-hidden="true"></span>
+          <span class="mono">Color dominante de la obra</span>
+        </div>
+
+        <div class="work-dialog__actions">
+          <button class="btn" type="button" id="dialog-share">
+            <iconify-icon icon="ph:link"></iconify-icon>
+            Compartir
+          </button>
+          <a class="btn" id="dialog-source" target="_blank" rel="noopener noreferrer" hidden>
+            Archivo original
+            <iconify-icon icon="ph:arrow-up-right"></iconify-icon>
+          </a>
+          <a class="btn btn--solid" id="dialog-inquire" hidden>
+            <iconify-icon icon="ph:envelope-simple"></iconify-icon>
+            Solicitar información
+          </a>
+        </div>
+      </aside>
+    </div>
+  </dialog>
+
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/seed.js"></script>
+  <script src="assets/js/color.js"></script>
+  <script src="assets/js/drive.js"></script>
+  <script src="assets/js/manifest.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/gallery-core.js"></script>
+  <script src="assets/js/page-obra.js"></script>
+</body>
+</html>

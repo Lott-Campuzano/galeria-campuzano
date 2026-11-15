@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" width="1500" height="1000" role="img">
+  <defs>
+  <filter id="gr" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope=".22"/></feComponentTransfer>
+  </filter></defs>
+  <rect width="1500" height="1000" fill="#dfe3e4"/>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9b7c4"/><stop offset=".55" stop-color="#dfe3e4"/><stop offset="1" stop-color="#40566f"/></linearGradient></defs><rect width="1500" height="1000" fill="url(#sky)"/><circle cx="792.3383980931247" cy="448.7117705633864" r="85.89243862312287" fill="#dfe3e4" opacity=".9"/><path d="M0 600 C 375 570, 825.0000000000001 620, 1500 585 L 1500 1000 L 0 1000 Z" fill="#40566f" opacity="0.28"/><path d="M0 674.9999999999999 C 375 644.9999999999999, 825.0000000000001 694.9999999999999, 1500 659.9999999999999 L 1500 1000 L 0 1000 Z" fill="#171f2a" opacity="0.41000000000000003"/><path d="M0 750 C 375 720, 825.0000000000001 770, 1500 735 L 1500 1000 L 0 1000 Z" fill="#40566f" opacity="0.54"/><path d="M0 825 C 375 795, 825.0000000000001 845, 1500 810 L 1500 1000 L 0 1000 Z" fill="#171f2a" opacity="0.67"/><path d="M0 899.9999999999999 C 375 869.9999999999999, 825.0000000000001 919.9999999999999, 1500 884.9999999999999 L 1500 1000 L 0 1000 Z" fill="#40566f" opacity="0.8"/>
+  <rect width="1500" height="1000" filter="url(#gr)" opacity=".5" style="mix-blend-mode:multiply"/>
+</svg>

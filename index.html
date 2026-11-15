@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     GALERÍA CAMPUZANO · portada
+     ------------------------------------------------------------
+     Requisito de diseño: aquí solo vive el nombre de la galería
+     y una selección aleatoria de al menos 30 obras. No hay
+     eslóganes, hero comercial ni llamadas genéricas.
+
+     Los textos institucionales salen de assets/js/config.js.
+     Las obras salen de assets/data/galeria.json; si ese archivo
+     todavía no existe, se usa la demo local de seed.js.
+
+     ORDEN DE LOS SCRIPTS (no cambiar):
+     1. config.js      → datos del sitio y API key de Drive
+     2. seed.js        → obras de demostración
+     3. color.js       → paletas dinámicas por obra
+     4. drive.js       → enlaces y miniaturas de Drive
+     5. manifest.js    → lectura del manifiesto publicado
+     6. common.js      → cabecera, textos y redes
+     7. gallery-core.js→ tarjetas, visor y color ambiental
+     8. page-home.js   → selección aleatoria de la portada
+     ============================================================ -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería Campuzano — Dibujo, fotografía y obra sobre papel</title>
+  <meta name="description" content="Archivo personal de dibujo, fotografía y pintura de Lott Campuzano. Ixtapan de la Sal, México.">
+  <meta name="theme-color" content="#f1ece2">
+  <meta name="color-scheme" content="light">
+
+  <!-- Vista previa al compartir el enlace -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Galería Campuzano">
+  <meta property="og:description" content="Dibujo, fotografía y obra sobre papel. Ixtapan de la Sal, México.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- IBM Plex Sans para lectura y JetBrains Mono para datos.
+       Los titulares usan Times New Roman del sistema. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body data-page="inicio">
+  <a class="skip-link" href="#seleccion">Saltar a la selección de obra</a>
+
+  <!-- Fondo ambiental dinámico. Cambia de color con la obra que
+       ocupa la pantalla. Es decorativo y no captura clics. -->
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__glow ambient__glow--a"></span>
+    <span class="ambient__glow ambient__glow--b"></span>
+  </div>
+
+  <!-- ==========================================================
+       CABECERA FIJA
+       common.js añade .is-scrolled al bajar y controla el menú
+       móvil con #nav-toggle.
+       ========================================================== -->
+  <header class="site-header" data-header>
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">GC</span>
+      <span class="brand__name">Galería <em>Campuzano</em></span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+      <a href="index.html" data-nav="inicio">Inicio</a>
+      <a href="obra.html" data-nav="obra">Obra</a>
+      <a href="autor.html" data-nav="autor">Autor</a>
+    </nav>
+
+    <div class="header__side">
+      <span class="mono header__meta" data-site="location">Ixtapan de la Sal, México</span>
+      <a class="header__panel mono" href="admin.html" title="Panel de edición">
+        <iconify-icon icon="ph:sliders-horizontal"></iconify-icon>
+        <span>Panel</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+        <iconify-icon icon="ph:list" data-menu-open></iconify-icon>
+        <iconify-icon icon="ph:x" data-menu-close hidden></iconify-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       PORTADA
+       El titular es el nombre. Debajo, una barra mínima indica
+       cuántas obras entraron en la selección y permite barajar.
+       ========================================================== -->
+  <main class="home" id="inicio">
+    <section class="home__head" aria-labelledby="home-title">
+      <div class="home__meta">
+        <p class="mono">Archivo personal · desde <span data-site="since">2026</span></p>
+        <p class="mono" data-site="location">Ixtapan de la Sal, México</p>
+      </div>
+
+      <h1 class="home__title" id="home-title">
+        <span>Galería</span>
+        <em>Campuzano</em>
+      </h1>
+
+      <div class="home__rule" aria-hidden="true"></div>
+
+      <div class="home__bar">
+        <p class="mono">
+          <span class="swatch" aria-hidden="true"></span>
+          <span id="home-count">30</span> obras en esta selección · cambia en cada visita
+        </p>
+
+        <div class="home__actions">
+          <button class="btn" type="button" id="home-shuffle">
+            <iconify-icon icon="ph:shuffle"></iconify-icon>
+            Otra selección
+          </button>
+          <a class="btn btn--solid" href="obra.html">
+            Ver el archivo
+            <iconify-icon icon="ph:arrow-up-right"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Retícula de obras al azar. page-home.js la llena. -->
+    <section class="home__works" id="seleccion" aria-label="Selección aleatoria de obra">
+      <div class="state" id="home-state" hidden></div>
+      <div class="mosaic" id="home-grid"></div>
+
+      <noscript>
+        <div class="state">
+          <p class="mono">JavaScript desactivado</p>
+          <p class="state__title">Activa JavaScript para ver la obra.</p>
+          <p class="state__text">
+            La galería carga las imágenes y el color de cada pieza con
+            JavaScript. El archivo sigue disponible en el panel.
+          </p>
+        </div>
+      </noscript>
+    </section>
+  </main>
+
+  <!-- ==========================================================
+       PIE DE PÁGINA
+       El crédito es un texto fijo del proyecto.
+       ========================================================== -->
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <p class="site-footer__credit">Hecho con amor por Lott Campuzano y OpenCode</p>
+      <nav class="site-footer__nav" aria-label="Enlaces del pie">
+        <a href="obra.html">Obra</a>
+        <a href="autor.html">Autor</a>
+        <a href="admin.html">Panel</a>
+        <a href="https://github.com/Lott-Campuzano" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <span class="mono">© <span data-year>2026</span> Galería Campuzano</span>
+      <span class="mono" data-site="location">Ixtapan de la Sal, México</span>
+    </div>
+  </footer>
+
+  <!-- Barra discreta que indica la obra activa al hacer scroll.
+       gallery-core.js la muestra y actualiza. -->
+  <div class="now" id="now" aria-hidden="true">
+    <span class="swatch" aria-hidden="true"></span>
+    <span class="now__title" id="now-title"></span>
+    <span class="now__meta" id="now-meta"></span>
+  </div>
+
+  <!-- ==========================================================
+       VISOR DE OBRA
+       Es un <dialog> nativo: el navegador gestiona el foco y la
+       tecla Escape. Los identificadores los usa gallery-core.js.
+       ========================================================== -->
+  <dialog class="work-dialog" id="work-dialog" aria-label="Visor de obra">
+    <div class="work-dialog__bar">
+      <span class="mono" id="dialog-counter">01 / 30</span>
+      <span class="mono work-dialog__hint">← → para navegar · Esc para cerrar</span>
+      <button class="work-dialog__close" id="dialog-close" type="button">
+        <span>Cerrar</span>
+        <iconify-icon icon="ph:x"></iconify-icon>
+      </button>
+    </div>
+
+    <div class="work-dialog__grid">
+      <div class="work-dialog__visual">
+        <button class="work-dialog__nav work-dialog__nav--prev" id="dialog-prev" type="button" aria-label="Obra anterior">
+          <iconify-icon icon="ph:arrow-left"></iconify-icon>
+        </button>
+        <img id="dialog-image" alt="" decoding="async">
+        <button class="work-dialog__nav work-dialog__nav--next" id="dialog-next" type="button" aria-label="Obra siguiente">
+          <iconify-icon icon="ph:arrow-right"></iconify-icon>
+        </button>
+      </div>
+
+      <aside class="work-dialog__info">
+        <p class="mono" id="dialog-category"></p>
+        <h2 class="work-dialog__title" id="dialog-title"></h2>
+        <p class="mono work-dialog__date" id="dialog-date"></p>
+        <p class="work-dialog__description" id="dialog-description"></p>
+
+        <dl class="work-dialog__meta">
+          <div>
+            <dt class="mono">Técnica</dt>
+            <dd id="dialog-technique"></dd>
+          </div>
+          <div>
+            <dt class="mono">Medidas</dt>
+            <dd id="dialog-dimensions"></dd>
+          </div>
+          <div>
+            <dt class="mono">Año</dt>
+            <dd id="dialog-year"></dd>
+          </div>
+        </dl>
+
+        <div class="work-dialog__palette">
+          <span class="swatch" aria-hidden="true"></span>
+          <span class="mono">Color dominante de la obra</span>
+        </div>
+
+        <div class="work-dialog__actions">
+          <button class="btn" type="button" id="dialog-share">
+            <iconify-icon icon="ph:link"></iconify-icon>
+            Compartir
+          </button>
+          <a class="btn" id="dialog-source" target="_blank" rel="noopener noreferrer" hidden>
+            Archivo original
+            <iconify-icon icon="ph:arrow-up-right"></iconify-icon>
+          </a>
+          <a class="btn btn--solid" id="dialog-inquire" hidden>
+            <iconify-icon icon="ph:envelope-simple"></iconify-icon>
+            Solicitar información
+          </a>
+        </div>
+      </aside>
+    </div>
+  </dialog>
+
+  <!-- Iconify: todos los iconos del sitio vienen de este CDN. -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/seed.js"></script>
+  <script src="assets/js/color.js"></script>
+  <script src="assets/js/drive.js"></script>
+  <script src="assets/js/manifest.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/gallery-core.js"></script>
+  <script src="assets/js/page-home.js"></script>
+</body>
+</html>
