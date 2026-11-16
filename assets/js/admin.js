@@ -1112,6 +1112,9 @@
   }
 
   async function init() {
+    // Fuera de local no se arranca nada: admin.css muestra el aviso.
+    if (document.documentElement.classList.contains("is-remote")) return;
+
     cacheElements();
     bindEvents();
     renderApiStatus();

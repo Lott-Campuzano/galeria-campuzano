@@ -1,10 +1,20 @@
 /* ============================================================
    Manifiesto de la galería
+   ------------------------------------------------------------
    El panel guarda un borrador local y exporta galeria.json.
    La galería pública lee ese archivo, sin tocar Drive en vivo.
+
+   Piezas:
+   1. WORK_DEFAULTS → campos de una obra, con valores neutros.
+   2. normalize    → deja limpio cualquier JSON (publicado o
+                     importado) antes de usarlo.
+   3. Borrador     → localStorage; nunca sale del navegador.
+   4. Publicación  → descarga o copia el JSON definitivo.
    ============================================================ */
 (function () {
   const CFG = window.GC_CONFIG || {};
+  /* Clave del borrador en localStorage. Si la cambias, los
+     borradores antiguos dejan de aparecer. */
   const STORAGE_KEY = "gc.gallery.draft.v1";
 
   const WORK_DEFAULTS = {
@@ -32,6 +42,8 @@
     return { version: 1, gallery: "Galería Campuzano", updatedAt: null, sources: [], works: [] };
   }
 
+  /* Normaliza cualquier entrada: rellena campos ausentes, fuerza
+     tipos y descarta obras sin id, fileId ni imageUrl. */
   function normalize(data) {
     if (!data || typeof data !== "object") return empty();
     const works = (Array.isArray(data.works) ? data.works : [])
@@ -68,6 +80,7 @@
     };
   }
 
+  /* Curaduría: sortOrder manda; si hay empate, la más reciente. */
   function sortedWorks(works) {
     return [...works].sort((a, b) => {
       const order = Number(a.sortOrder) - Number(b.sortOrder);
@@ -76,6 +89,8 @@
     });
   }
 
+  /* Lee assets/data/galeria.json. Devuelve null si no existe:
+     el sitio interpreta ese null como «usar la demo». */
   async function loadPublished(path) {
     const url = path || CFG.gallery?.manifest || "assets/data/galeria.json";
     let res;
@@ -92,6 +107,8 @@
     return normalize(data);
   }
 
+  /* Borrador local. Si localStorage falla (modo privado), el panel
+     sigue funcionando en memoria hasta cerrar la pestaña. */
   function loadDraft() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -121,6 +138,7 @@
     }
   }
 
+  /* Copia con updatedAt renovado: es el JSON que se publica. */
   function copyPayload(manifest) {
     return JSON.stringify(
       {
@@ -161,6 +179,7 @@
     return normalize(data);
   }
 
+  /* Lo que ve el público: solo obras publicadas, ya ordenadas. */
   function publicWorks(manifest) {
     return sortedWorks((manifest?.works || []).filter((w) => w.published !== false));
   }

@@ -8,6 +8,10 @@ importar imágenes desde carpetas públicas de Google Drive.
 No usa frameworks, backend, npm ni paso de compilación. Solo HTML, CSS,
 JavaScript, SVG y un archivo JSON de datos.
 
+> Para saber qué archivo tocar según lo que quieras cambiar, consulta
+> **[GUIA.md](GUIA.md)**: mapa de archivos, textos, colores, obra, panel y
+> publicación.
+
 ## Qué incluye
 
 - **Portada**: solo el nombre de la galería y una selección aleatoria de 30
@@ -36,6 +40,7 @@ galeria-campuzano/
 ├── obra.html               Archivo y colecciones
 ├── autor.html              Página del autor
 ├── admin.html              Panel local (sin enlaces en el sitio)
+├── GUIA.md                 Dónde tocar cada cosa
 ├── assets/
 │   ├── css/
 │   │   ├── base.css        Variables, reinicio, botones, formularios

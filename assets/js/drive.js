@@ -1,8 +1,13 @@
 /* ============================================================
-   Google Drive + manifiesto de la galería
+   Google Drive + enlaces externos
+   ------------------------------------------------------------
    - Lee SOLO las carpetas / archivos que se pegan en el panel.
-   - No recorre el Drive completo ni pide OAuth.
+   - No recorre el Drive completo ni pide OAuth: usa una API key
+     pública restringida (config.js → drive.apiKey).
    - No usa librerías externas.
+
+   Flujo: pegar enlace → parseLink → scanSource → lista de
+   archivos → workFromImport crea la ficha de cada obra.
    ============================================================ */
 (function () {
   const CFG = window.GC_CONFIG || {};
@@ -10,6 +15,8 @@
   const API = "https://www.googleapis.com/drive/v3";
   const IMAGE_EXT = /\.(jpe?g|png|webp|avif|gif|bmp|tiff?)$/i;
 
+  /* Error con código propio para que el panel distinga «falta la
+     key» de «carpeta privada» o «sin conexión». */
   class DriveError extends Error {
     constructor(message, code, detail) {
       super(message);
@@ -27,6 +34,8 @@
     return apiKey().length > 20;
   }
 
+  /* Miniaturas públicas: no necesitan key y son lo que usa el
+     sitio en producción para mostrar las imágenes. */
   function thumbnail(fileId, size = 2000) {
     if (!fileId) return "";
     return `https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w${size}`;
@@ -36,6 +45,7 @@
     return `https://drive.google.com/drive/folders/${folderId}`;
   }
 
+  /* Traduce los códigos HTTP de Google a mensajes entendibles. */
   function driveErrorFromResponse(res, data) {
     const detail = data?.error?.message || `Error ${res.status}`;
     if (res.status === 400) {
@@ -65,6 +75,8 @@
     return new DriveError("Google Drive no respondió correctamente.", "DRIVE_ERROR", detail);
   }
 
+  /* Única puerta a la red de Drive: añade la key y normaliza
+     los errores. */
   async function driveFetch(path, params) {
     if (!isConfigured()) {
       throw new DriveError(
@@ -93,6 +105,9 @@
     return data;
   }
 
+  /* Clasifica lo que el usuario pegó. Acepta carpetas y archivos
+     de Drive, IDs sueltos y enlaces directos a imágenes; explica
+     por qué Google Fotos o iCloud no se pueden leer. */
   function parseLink(raw) {
     const input = String(raw || "").trim();
     if (!input) return null;
@@ -139,6 +154,8 @@
     };
   }
 
+  /* Lista imágenes de una carpeta. El límite de 6 páginas evita
+     bloquear el navegador con carpetas enormes. */
   async function listFolder(folderId) {
     const files = [];
     let pageToken = "";
@@ -255,6 +272,9 @@
     return raw ? raw.slice(0, 10) : "";
   }
 
+  /* Convierte un archivo de Drive o un enlace externo en la ficha
+     que espera el manifiesto. Los metadatos editoriales quedan
+     vacíos para rellenarlos en el panel. */
   function workFromImport(file, source, defaults = {}) {
     const isExternal = file.type === "image";
     const id = isExternal ? `w_${file.id}` : `w_${file.id}`;
@@ -280,12 +300,16 @@
     };
   }
 
+  /* URL final de la imagen: local o externa si existe; si no,
+     miniatura de Drive. */
   function imageUrlFor(work, size = 2000) {
     if (work.imageUrl) return work.imageUrl;
     if (work.fileId) return thumbnail(work.fileId, size);
     return "";
   }
 
+  /* Mide la imagen cargándola en memoria; si falla devuelve 0 y la
+     tarjeta usa una proporción por defecto. */
   async function probeImage(url) {
     return new Promise((resolve) => {
       const img = new Image();

@@ -33,6 +33,23 @@
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
+  <!-- Guarda de visibilidad: el panel solo se activa en local.
+       En un dominio público el HTML se sirve, pero la interfaz queda
+       oculta tras un aviso. No es autenticación: es una cortina para
+       que el editor no forme parte del sitio publicado. -->
+  <script>
+    (function () {
+      var host = location.hostname;
+      var local =
+        location.protocol === "file:" ||
+        host === "localhost" ||
+        host === "127.0.0.1" ||
+        host === "::1" ||
+        host === "[::1]";
+      if (!local) document.documentElement.classList.add("is-remote");
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -43,6 +60,14 @@
 </head>
 
 <body data-page="panel">
+  <!-- Aviso para cuando el panel se abre desde un dominio público.
+       admin.css lo muestra solo si <html> lleva .is-remote. -->
+  <div class="remote-note">
+    <p class="mono">Panel local</p>
+    <p class="remote-note__title">Este panel solo se abre en tu computadora.</p>
+    <a class="btn" href="index.html">Volver a la galería</a>
+  </div>
+
   <a class="skip-link" href="#admin-main">Saltar al contenido del panel</a>
 
   <!-- CABECERA PÚBLICA: permite volver al sitio en cualquier momento. -->
